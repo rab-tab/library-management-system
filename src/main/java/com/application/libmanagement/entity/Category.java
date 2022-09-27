@@ -6,22 +6,24 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Data
+@Entity
+@Table(name = "categories")
 public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 50,nullable = false,unique = true)
+    @Column(name = "name", length = 50, nullable = false, unique = true)
     private String name;
 
-    @ManyToMany(mappedBy = "categories",cascade = CascadeType.ALL)
-    private Set<Book> books=new HashSet<>();
+    @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
+    private Set<Book> books = new HashSet<Book>();
 
+    public Category(String name) {
+        this.name = name;
+    }
 }

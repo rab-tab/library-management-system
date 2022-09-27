@@ -17,15 +17,20 @@ public class BookService {
     }
 
     public Book findBookById(Long id) {
-        return bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book with id " + id + "not found"));
+        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
+        return book;
     }
 
-    public void createBook(Book book) {
+    public void createBook(Book book){
         bookRepository.save(book);
     }
 
-    public void deleteBook(Long id) {
-        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book with id " + id + "not found"));
+    public void updateBook(Book book){
+        bookRepository.save(book);
+    }
+
+    public void deleteBook(Long id){
+        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
         bookRepository.deleteById(book.getId());
     }
 }

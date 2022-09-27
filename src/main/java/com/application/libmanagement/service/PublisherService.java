@@ -13,26 +13,25 @@ public class PublisherService {
     @Autowired
     private PublisherRepository publisherRepository;
 
-    public List<Publisher> findAllPublishers() {
-       return publisherRepository.findAll();
+    public List<Publisher> findAllPublishers(){
+        return publisherRepository.findAll();
     }
 
-    public Publisher findPublisherById(Long id) {
-        Publisher publisher = publisherRepository.findById(id).orElseThrow(() -> new RuntimeException("Publisher with " + id + "not found"));
+    public Publisher findPublisherById(Long id){
+        Publisher publisher = publisherRepository.findById(id).orElseThrow(() -> new RuntimeException("Publisher not found"));
         return publisher;
     }
 
-    public void createPublisher(Publisher publisher) {
+    public void cretePublisher(Publisher publisher){
         publisherRepository.save(publisher);
     }
 
-    public void updatePublisher(Publisher publisher) {
+    public void updatePublisher(Publisher publisher){
         publisherRepository.save(publisher);
     }
 
-    public void deletePublisher(Long id) {
-        Publisher publisher = publisherRepository.findById(id).orElseThrow(() -> new RuntimeException("Publisher with id " + id + " not found"));
-        publisherRepository.deleteById(id);
-
+    public void deletePublisher(Long id){
+        Publisher publisher = publisherRepository.findById(id).orElseThrow(() -> new RuntimeException("Publisher not found"));
+        publisherRepository.deleteById(publisher.getId());
     }
 }

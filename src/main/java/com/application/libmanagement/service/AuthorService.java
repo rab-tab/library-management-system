@@ -17,21 +17,20 @@ public class AuthorService {
     }
 
     public Author findAuthorById(Long id) {
-        Author author = authorRepository.findById(id).orElseThrow(() -> new RuntimeException("Author with id " + id + " not found"));
+        Author author = authorRepository.findById(id).orElseThrow(() -> new RuntimeException("Author not found"));
         return author;
     }
 
-    public void createAuthor(Author author) {
+    public void createAuthor(Author author){
         authorRepository.save(author);
     }
 
-    public void updateAuthor(Author author) {
+    public void updateAuthor(Author author){
         authorRepository.save(author);
     }
 
-    public void deleteAuthor(Long id) {
-        Author author = authorRepository.findById(id).orElseThrow(() -> new RuntimeException("Author with id " + id + " not found"));
-        authorRepository.deleteById(id);
-
+    public void deleteAuthor(Long id){
+        Author author = authorRepository.findById(id).orElseThrow(() -> new RuntimeException("Author not found"));
+        authorRepository.deleteById(author.getId());
     }
 }
